@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PracticeAdvanceGUI</string>
+    <string name="foodNow">FoodNow</string>
+    <string name="total">Total</string>
+</resources>
