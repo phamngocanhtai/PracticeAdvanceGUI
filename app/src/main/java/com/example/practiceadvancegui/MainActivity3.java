@@ -14,11 +14,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity3 extends AppCompatActivity implements AccountAdapter.OnItemClickListener {
+public class MainActivity3 extends AppCompatActivity implements AccountAdapter.OnItemLongClickListener {
 
     RecyclerView rvAccount;
     ArrayList<Account> accountArrayList;
     AccountAdapter accountAdapter;
+    int mPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +50,17 @@ public class MainActivity3 extends AppCompatActivity implements AccountAdapter.O
         switch (item.getItemId())
         {
             case R.id.mnuEdit:
-                Toast.makeText(this, "Menu Edit", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Menu Edit".concat(" Pos ").concat(String.valueOf(mPos)), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mnuDelete:
-                Toast.makeText(this, "Menu Delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Menu Delete".concat(" Pos ").concat(String.valueOf(mPos)), Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onContextItemSelected(item);
     }
 
     @Override
-    public void setOnUserCallClick(Account account) {
-        Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
+    public void setOnUserLongClickListener(int pos) {
+        mPos = pos;
     }
 }

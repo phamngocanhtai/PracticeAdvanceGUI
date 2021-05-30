@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,17 +17,17 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ItemAcco
 
     Context context;
     ArrayList<Account> accountArrayList;
-    OnItemClickListener onItemClickListener;
+    OnItemLongClickListener onItemLongClickListener;
 
 
-    public AccountAdapter(Context context, ArrayList<Account> accountArrayList, OnItemClickListener onItemClickListener) {
+    public AccountAdapter(Context context, ArrayList<Account> accountArrayList, OnItemLongClickListener onItemLongClickListener) {
         this.context = context;
         this.accountArrayList = accountArrayList;
-        this.onItemClickListener = onItemClickListener;
+        this.onItemLongClickListener = onItemLongClickListener;
     }
 
-    interface OnItemClickListener {
-        void setOnUserCallClick(Account account);
+    interface OnItemLongClickListener {
+        void setOnUserLongClickListener(int pos);
     }
 
     @NonNull
@@ -43,6 +44,14 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ItemAcco
         Account account = accountArrayList.get(position);
         holder.txtName.setText(account.name);
         holder.txtAddress.setText(account.address);
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onItemLongClickListener.setOnUserLongClickListener(position);
+                return false;
+            }
+        });
     }
 
     @Override
